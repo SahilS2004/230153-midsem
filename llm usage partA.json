@@ -1,0 +1,122 @@
+{
+  "student_metadata": {
+    "name": "Sahil Sarawgi",
+    "roll_number": "230153",
+    "course": "Advanced Machine Learning",
+    "exam": "Mid-Semester Examination",
+    "part": "Part A",
+    "submission_date": "2026-03-01"
+  },
+  "llm_tools_used": [
+    {
+      "tool_name": "ChatGPT",
+      "model": "GPT-5",
+      "provider": "OpenAI"
+    },
+    {
+      "tool_name": "Claude",
+      "model": "Claude 3",
+      "provider": "Anthropic"
+    }
+  ],
+  "full_llm_interaction_log": [
+    {
+      "interaction_id": 1,
+      "date": "2026-03-01",
+      "tool_name": "Claude",
+      "model": "Claude 3",
+      "purpose": "Checking whether the selected paper satisfies Part A constraints",
+      "prompt": "Check whether the research paper 'Dirichlet Process Gaussian Mixture Models' satisfies the Part A requirements mentioned in the mid-semester exam PDF.",
+      "llm_response_used": "Yes",
+      "how_it_helped": "The response helped verify that the paper aligns with classical ML methods (GMM), falls within the required publication period, and is conceptually suitable for reproduction.",
+      "student_verification": "Verified by reading the paper abstract and confirming the method is based on Gaussian Mixture Models and Bayesian clustering.",
+      "confidence_level": 5
+    },
+    {
+      "interaction_id": 2,
+      "date": "2026-03-01",
+      "tool_name": "ChatGPT",
+      "model": "GPT-5",
+      "purpose": "Understanding the core concept of Dirichlet Process Gaussian Mixture Models",
+      "prompt": "Explain Dirichlet Process Gaussian Mixture Models in simple terms and how they differ from standard Gaussian Mixture Models.",
+      "llm_response_used": "Partially",
+      "how_it_helped": "The explanation helped build intuition about automatic cluster determination and the role of the Dirichlet Process in non-parametric Bayesian clustering.",
+      "student_verification": "Concept verified by reading the introduction and methodology section of the selected research paper.",
+      "confidence_level": 4
+    },
+    {
+      "interaction_id": 3,
+      "date": "2026-03-01",
+      "tool_name": "ChatGPT",
+      "model": "GPT-5",
+      "purpose": "Checking feasibility of reproducing experiments on a laptop",
+      "prompt": "Can Dirichlet Process Gaussian Mixture Models be implemented using scikit-learn or similar libraries on a CPU laptop with small datasets?",
+      "llm_response_used": "Yes",
+      "how_it_helped": "It suggested that BayesianGaussianMixture in scikit-learn can approximate DP-GMM behaviour and can be used for small dataset experiments.",
+      "student_verification": "Checked scikit-learn documentation and confirmed the availability of BayesianGaussianMixture implementation.",
+      "confidence_level": 4
+    },
+    {
+      "interaction_id": 4,
+      "date": "2026-03-01",
+      "tool_name": "ChatGPT",
+      "model": "GPT-5",
+      "purpose": "Identifying possible datasets for experimentation",
+      "prompt": "Suggest small public datasets suitable for demonstrating Gaussian Mixture Models or Dirichlet Process clustering.",
+      "llm_response_used": "Partially",
+      "how_it_helped": "It suggested datasets such as Iris or synthetic Gaussian clusters which can be used to demonstrate clustering behaviour.",
+      "student_verification": "Verified dataset availability through sklearn datasets module and confirmed they can be used for clustering experiments.",
+      "confidence_level": 4
+    },
+    {
+      "interaction_id": 5,
+      "date": "2026-03-01",
+      "tool_name": "Claude",
+      "model": "Claude 3",
+      "purpose": "Understanding potential limitations of DP-GMM",
+      "prompt": "What are common limitations or failure cases of Dirichlet Process Gaussian Mixture Models?",
+      "llm_response_used": "Partially",
+      "how_it_helped": "The response highlighted issues such as sensitivity to initialization, cluster overlap, and difficulty in high-dimensional spaces.",
+      "student_verification": "Cross-checked by reviewing related sections in the research paper discussing inference complexity and model assumptions.",
+      "confidence_level": 4
+    }
+  ],
+  "top_5_prompts": [
+    {
+      "rank": 1,
+      "interaction_id": 1,
+      "prompt": "Check whether the research paper 'Dirichlet Process Gaussian Mixture Models' satisfies the Part A requirements mentioned in the mid-semester exam PDF.",
+      "why_important": "Helped confirm that the selected paper satisfies the official constraints before final submission."
+    },
+    {
+      "rank": 2,
+      "interaction_id": 3,
+      "prompt": "Can Dirichlet Process Gaussian Mixture Models be implemented using scikit-learn or similar libraries on a CPU laptop with small datasets?",
+      "why_important": "Ensured that the experiments can be reproduced within the compute constraints of the exam."
+    },
+    {
+      "rank": 3,
+      "interaction_id": 2,
+      "prompt": "Explain Dirichlet Process Gaussian Mixture Models in simple terms and how they differ from standard Gaussian Mixture Models.",
+      "why_important": "Provided a conceptual understanding of the algorithm before reading the technical details."
+    },
+    {
+      "rank": 4,
+      "interaction_id": 4,
+      "prompt": "Suggest small public datasets suitable for demonstrating Gaussian Mixture Models or Dirichlet Process clustering.",
+      "why_important": "Helped identify feasible datasets for reproducing experiments in Part B."
+    },
+    {
+      "rank": 5,
+      "interaction_id": 5,
+      "prompt": "What are common limitations or failure cases of Dirichlet Process Gaussian Mixture Models?",
+      "why_important": "Helped identify possible experimental observations and limitations to analyze in later parts of the exam."
+    }
+  ],
+  "student_declaration": {
+    "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Part A.",
+    "understanding_acknowledged": true,
+    "signature": "Sahil Sarawgi",
+    "date": "2026-03-01"
+  }
+}
