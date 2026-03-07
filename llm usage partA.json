@@ -81,38 +81,6 @@
       "confidence_level": 4
     }
   ],
-  "top_5_prompts": [
-    {
-      "rank": 1,
-      "interaction_id": 1,
-      "prompt": "Check whether the research paper 'Dirichlet Process Gaussian Mixture Models' satisfies the Part A requirements mentioned in the mid-semester exam PDF.",
-      "why_important": "Helped confirm that the selected paper satisfies the official constraints before final submission."
-    },
-    {
-      "rank": 2,
-      "interaction_id": 3,
-      "prompt": "Can Dirichlet Process Gaussian Mixture Models be implemented using scikit-learn or similar libraries on a CPU laptop with small datasets?",
-      "why_important": "Ensured that the experiments can be reproduced within the compute constraints of the exam."
-    },
-    {
-      "rank": 3,
-      "interaction_id": 2,
-      "prompt": "Explain Dirichlet Process Gaussian Mixture Models in simple terms and how they differ from standard Gaussian Mixture Models.",
-      "why_important": "Provided a conceptual understanding of the algorithm before reading the technical details."
-    },
-    {
-      "rank": 4,
-      "interaction_id": 4,
-      "prompt": "Suggest small public datasets suitable for demonstrating Gaussian Mixture Models or Dirichlet Process clustering.",
-      "why_important": "Helped identify feasible datasets for reproducing experiments in Part B."
-    },
-    {
-      "rank": 5,
-      "interaction_id": 5,
-      "prompt": "What are common limitations or failure cases of Dirichlet Process Gaussian Mixture Models?",
-      "why_important": "Helped identify possible experimental observations and limitations to analyze in later parts of the exam."
-    }
-  ],
   "student_declaration": {
     "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Part A.",
     "understanding_acknowledged": true,
