@@ -1,0 +1,162 @@
+{
+    "student_metadata": {
+        "name": "Sahil Sarawgi",
+        "roll_number": "230153",
+        "course": "Advanced Machine Learning",
+        "exam": "Mid-Semester Examination",
+        "part": "Part B",
+        "submission_date": "2026-03-11"
+    },
+    "llm_tools_used": [
+        {
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "provider": "OpenAI"
+        },
+        {
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "provider": "Anthropic"
+        }
+    ],
+    "full_llm_interaction_log": [
+        {
+            "interaction_id": 1,
+            "date": "2026-03-06",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Setting up the project structure for Part B implementation",
+            "prompt": "I need to build a project to reproduce the paper 'Dirichlet Process Gaussian Mixture Models: Choice of the Base Distribution' by Görür & Rasmussen (2010). Suggest a clean project structure with separate folders for experiments, results, datasets, and report. The experiments should run on a laptop CPU with small datasets.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Helped define the folder structure with experiments/, results/plots/, dataset/, and report/ directories. Also suggested keeping experiments as separate scripts for modularity.",
+            "student_verification": "Verified that the structure follows standard ML project conventions and matches the assignment requirements for clean GitHub repo organization.",
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 2,
+            "date": "2026-03-06",
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "purpose": "Understanding how to implement DP-GMM using scikit-learn",
+            "prompt": "How do I implement a Dirichlet Process Gaussian Mixture Model using sklearn's BayesianGaussianMixture? Explain the key parameters like n_components, weight_concentration_prior_type, and weight_concentration_prior (alpha). Show a basic example with the Iris dataset.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Clarified that n_components acts as an upper bound, weight_concentration_prior_type should be set to 'dirichlet_process', and the concentration parameter alpha controls cluster count. Provided a working code snippet.",
+            "student_verification": "Verified by reading sklearn documentation for BayesianGaussianMixture and confirming the parameter descriptions match. Also tested the basic example on Iris data locally.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 3,
+            "date": "2026-03-07",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Designing Experiment 1: Model comparison between KMeans, GMM, and DP-GMM",
+            "prompt": "Write a Python script that compares KMeans (k=3), standard GMM (n_components=3), and DP-GMM (BayesianGaussianMixture with n_components=10) on the Iris dataset. Use Adjusted Rand Index and Silhouette Score as metrics. Generate side-by-side scatter plots showing ground truth and each model's clustering.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Provided a framework for the comparison experiment. Used the code structure but modified the visualization to include ground truth plot and added weight-based effective cluster counting for DP-GMM instead of just counting unique labels.",
+            "student_verification": "Ran the experiment locally and verified that ARI and Silhouette scores are computed correctly. Checked that DP-GMM detects clusters automatically without manual specification of k.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 4,
+            "date": "2026-03-07",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Designing Experiment 2: Running DP-GMM on multiple datasets",
+            "prompt": "I want to run DP-GMM on four datasets: Iris, Wine, Old Faithful Geyser, and synthetic blobs. For each dataset, fit the model, record detected clusters vs expected clusters, compute ARI (where ground truth is available) and Silhouette Score. Use PCA to reduce high-dimensional datasets to 2D for plotting. Generate a 2x2 grid visualization.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Helped structure the multi-dataset experiment loop and the 2x2 visualization layout. Modified the code to use numpy for CSV reading instead of pandas for compatibility, and adjusted PCA usage for datasets with more than 2 features.",
+            "student_verification": "Verified results by checking Old Faithful detects 2 clusters (known bimodal distribution) and synthetic blobs are clustered correctly. Cross-referenced Wine dataset structure from sklearn documentation.",
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 5,
+            "date": "2026-03-08",
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "purpose": "Designing Experiment 3: Hyperparameter analysis for concentration parameter alpha",
+            "prompt": "The paper says the concentration parameter alpha controls the expected number of clusters in a DP-GMM. Design an experiment that varies alpha from 0.001 to 1000 on the Iris dataset, records the number of clusters, ARI, and Silhouette Score at each value, and generates plots showing alpha vs clusters, alpha vs ARI, and alpha vs Silhouette on a log scale.",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Provided the experimental framework for the alpha sweep. The suggested log-scale alpha values (0.001, 0.01, 0.1, 0.5, 1.0, 5.0, 10.0, 50.0, 100.0, 500.0, 1000.0) gave good coverage of the parameter space. Also suggested showing cluster visualizations at three representative alpha values (small, medium, large).",
+            "student_verification": "Ran the experiment and verified that cluster count generally increases with alpha, confirming the paper's theoretical prediction. Checked that the plots clearly show the monotonic relationship.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 6,
+            "date": "2026-03-08",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Designing Experiment 4: Failure analysis and edge cases for DP-GMM",
+            "prompt": "What are the common failure modes of DP-GMM? I want to create experiments showing: (1) overlapping clusters using Iris versicolor vs virginica, (2) high-dimensional data (2D vs 50D) with same samples, (3) outlier sensitivity by adding random outliers, and (4) unbalanced cluster sizes (300/50/10). For each case, compare ARI before and after the challenging condition.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Suggested the four failure cases and how to set up each scenario. Modified the outlier experiment to compute ARI only on original points (excluding outlier labels) for fair comparison. Also added a summary table at the end.",
+            "student_verification": "Verified each failure case produces meaningful results: overlapping clusters show lower ARI, 50D data degrades performance, outliers create spurious clusters, and unbalanced data is handled reasonably well. Cross-checked with paper's discussion on clustering uncertainty.",
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 7,
+            "date": "2026-03-09",
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "purpose": "Understanding the difference between conjugate and conditionally conjugate DPGMM",
+            "prompt": "The paper compares conjugate DPGMM (Normal-Inverse-Wishart base distribution) vs conditionally conjugate DPGMM (independent Normal and Inverse-Wishart priors). Explain why the conditionally conjugate version gives better density estimation. What does it mean for mean and covariance to be 'coupled' vs 'independent'?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Clarified that in the conjugate model, the prior couples mean and covariance so large means imply large variances, which is restrictive. The conditionally conjugate model allows independent control, leading to more flexible cluster shapes and better density estimation.",
+            "student_verification": "Verified by re-reading Section 3 and 4 of the paper which discusses the NIW prior and the independent prior formulation. The explanation matched the paper's conclusions.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 8,
+            "date": "2026-03-09",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Understanding the stick-breaking construction of the Dirichlet Process",
+            "prompt": "Explain the stick-breaking construction of the Dirichlet Process in simple terms. How does it relate to the weights of mixture components? Why do the weights decrease and how does alpha affect this?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Provided an intuitive explanation: imagine breaking a stick of length 1, where each break gives the weight for one cluster. Small alpha makes early breaks take most of the stick (few dominant clusters), while large alpha distributes weight more evenly (many clusters).",
+            "student_verification": "Verified by checking Sethuraman (1994) constructive definition referenced in the paper, and by observing the weight distribution plots from Experiment 1 where most weight concentrates in a few components.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 9,
+            "date": "2026-03-10",
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "purpose": "Writing the project report in IEEE LaTeX format",
+            "prompt": "Convert my project report from Markdown to IEEE conference LaTeX format using IEEEtran document class. The report has sections: Introduction, Paper Summary, Method Implementation, Experiments (4 experiments with tables and figures), Results Summary, Why DP-GMM, and Conclusion. Include proper citations using thebibliography.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Provided the LaTeX template structure with IEEEtran class, proper table formatting using booktabs, figure inclusion with captions, and bibliography entries. Modified the content to fit IEEE formatting conventions and added proper cross-references.",
+            "student_verification": "Verified the LaTeX structure by checking against IEEE conference template guidelines. Ensured all tables reference correct experimental data and figures point to correct plot files.",
+            "confidence_level": 4
+        },
+        {
+            "interaction_id": 10,
+            "date": "2026-03-10",
+            "tool_name": "ChatGPT",
+            "model": "GPT-5",
+            "purpose": "Understanding why DP-GMM detects more clusters than expected on Iris dataset",
+            "prompt": "My DP-GMM implementation detects 6 clusters on the Iris dataset instead of the expected 3. Is this a bug or expected behavior? How should I interpret this in my report?",
+            "llm_response_used": "Yes",
+            "how_it_helped": "Explained that this is valid behavior — Iris versicolor and virginica overlap significantly, so DP-GMM detects finer sub-structure. Suggested using weight-based effective cluster counting (weight > 1% threshold) and presenting this as a feature rather than a limitation.",
+            "student_verification": "Verified by checking the component weight distribution plot, which shows most weight concentrated in a few dominant components. Also confirmed that versicolor/virginica overlap is well-documented in clustering literature.",
+            "confidence_level": 5
+        },
+        {
+            "interaction_id": 11,
+            "date": "2026-03-11",
+            "tool_name": "Claude",
+            "model": "Claude 3",
+            "purpose": "Converting Python experiment scripts to Jupyter notebook format",
+            "prompt": "Convert my 4 experiment Python scripts to Jupyter notebook (.ipynb) format. Split each script into logical cells with markdown headers for each section (Imports, Data Loading, Model Fitting, Results, Visualization). Use %matplotlib inline instead of matplotlib.use('Agg') for inline plot display.",
+            "llm_response_used": "Partially",
+            "how_it_helped": "Provided the notebook JSON structure and cell splitting logic. Modified to ensure proper markdown formatting with section headers and explanatory text between code cells for better readability.",
+            "student_verification": "Opened all 4 notebooks in Jupyter and verified they run correctly with inline plot display. Confirmed cell structure follows a logical flow from imports to results.",
+            "confidence_level": 4
+        }
+    ],
+    "student_declaration": {
+        "statement": "I declare that this JSON file contains a complete and honest record of my LLM usage for Part B.",
+        "understanding_acknowledged": true,
+        "signature": "Sahil Sarawgi",
+        "date": "2026-03-11"
+    }
+}
